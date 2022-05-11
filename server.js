@@ -17,7 +17,7 @@ app.get('/game/:gameId', (req, res) => {
     const operatorSeed = POW_GAMING__OPERATOR_SEED
     const launcherTokenGenerator = new LauncherTokenGenerator(operatorId, gameId, userId ,powSeed , operatorSeed)
     launcherTokenGenerator.encode()
-    res.redirect(`${POW_GAMING__PLATFORM_API}/launch/${launcherTokenGenerator.getLaunchToken()}`)
+    res.redirect(`${POW_GAMING__PLATFORM_API}/launch/${launcherTokenGenerator.getLaunchToken()}?call=0`)
 })
 
 app.get('/', async (req, res) => {

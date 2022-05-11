@@ -9,7 +9,7 @@ const htmlIndex = async () => {
     let games = ''
     const contents = await fs.readFile(__dirname + '/index.html')
     const { body } = await requestPromise(POW_GAMING__GAME_LIST)
-    JSON.parse(body).data.forEach(element => {
+    JSON.parse(body).forEach(element => {
         games += `<div><a href='game/${element.id}'>${element.name}</a></div>`
     });
     return `${contents}${games}</div></body></html>`    

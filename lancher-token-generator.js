@@ -18,13 +18,14 @@ class LauncherTokenGenerator {
 
     encode() {
         const firstLevelObject = {
-            gameId: this.gameId,
-            userId: this.userId
+            m: this.gameId,
+            e: this.userId,
+            t: new Date(),
         }
         const firstLevelToken = jwt.sign(firstLevelObject, this.operatorSeed);
         const secondLevelObject = {
-            casinoId: this.operatorId,
-            token: firstLevelToken
+            r: this.operatorId,
+            n: firstLevelToken
         }
         const secondLevelToken = jwt.sign(secondLevelObject, this.powSeed);
         this.launchToken = secondLevelToken

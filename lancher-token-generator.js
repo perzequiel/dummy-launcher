@@ -20,7 +20,7 @@ class LauncherTokenGenerator {
         const firstLevelObject = {
             m: this.gameId,
             e: this.userId,
-            t: new Date(),
+            t: (new Date()).toISOString(),
         }
         const firstLevelToken = jwt.sign(firstLevelObject, this.operatorSeed);
         const secondLevelObject = {

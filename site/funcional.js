@@ -17,10 +17,10 @@ const setGames = async ()=>{
 
         if (gameBtn.length) {
             gameBtn[0].addEventListener('click', ()=>{
-                doAction(game.id)
+                doAction(game.game_id)
             });
             gameBtn[1].addEventListener('click', ()=>{
-                doAction(game.id)
+                doAction(game.game_id)
             });
         }
     }

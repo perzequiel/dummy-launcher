@@ -5,8 +5,10 @@ const requestPromise = require('util').promisify(request);
 const app = express()
 const port = 3000
 
+require('dotenv').config()
+const { POW_GAMING__GAME_LIST } = process.env
+
 const LauncherTokenGenerator = require('./lancher-token-generator.js')
-const htmlIndex = require('./index.js')
 
 require('dotenv').config()
 const { POW_GAMING__OPERATOR_ID, POW_GAMING__OPERATOR_SEED, POW_GAMING__POW_SEED, POW_GAMING__PLATFORM_API } = process.env
@@ -27,9 +29,12 @@ app.get('/game/:gameId', async (req, res) => {
     return res.redirect(body)
 })
 
-app.get('/', async (req, res) => {
-    res.end(await htmlIndex(req.query.username));
+app.get('/game-list.js', async (req, res) => {
+  const { body } = await requestPromise(POW_GAMING__GAME_LIST)  
+  return res.end(`const gamesList = ${body}`);
 })
+
+app.use(express.static('site'));
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)

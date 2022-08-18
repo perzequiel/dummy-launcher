@@ -13,6 +13,12 @@ const LauncherTokenGenerator = require('./lancher-token-generator.js')
 require('dotenv').config()
 const { POW_GAMING__OPERATOR_ID, POW_GAMING__OPERATOR_SEED, POW_GAMING__POW_SEED, POW_GAMING__PLATFORM_API } = process.env
 
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+
 app.get('/game/:gameId', async (req, res) => {
     const gameId = req.params.gameId
     const username = req.query.username

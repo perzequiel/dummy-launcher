@@ -13,7 +13,7 @@ const recoverUser = ()=>{
 }
 const setGames = async ()=>{
     for (const game of gamesList) {
-        gameBtn = document.querySelectorAll(".btn-" + game.name)
+        gameBtn = document.querySelectorAll(".btn-" + game.class_name)
 
         if (gameBtn.length) {
             gameBtn[0].addEventListener('click', ()=>{

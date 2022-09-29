@@ -29,11 +29,20 @@ app.get('/game/:gameId', async (req, res) => {
     const operatorSeed = POW_GAMING__OPERATOR_SEED
     const launcherTokenGenerator = new LauncherTokenGenerator(operatorCode, currencyCode, gameId, userId ,powSeed , operatorSeed)
     launcherTokenGenerator.encode()
-    const { body, statusCode } = await requestPromise(`${POW_GAMING__PLATFORM_API}/launch/${launcherTokenGenerator.getLaunchToken()}?call=0`)
-    if (statusCode != 200) {
-      return res.end('Service unavailable');
+
+    async function callService() {
+      const { body, statusCode } = await requestPromise(`${POW_GAMING__PLATFORM_API}/launch/${launcherTokenGenerator.getLaunchToken()}?call=0`)
+      return statusCode != 200 ? 'error' : body
     }
-    return res.redirect(body)
+
+    
+    for (let tries = 0; tries < 3; tries++) {
+      const response = await callService()
+      if (response != 'error') {
+        return res.redirect(response)
+      }
+    }
+    return res.end('Service unavailable');
 })
 
 app.get('/game-list.js', async (req, res) => {

@@ -18,6 +18,7 @@ class definition of the launcher token generator
 - constructor: save params
 - encode: data encoding in launcher token.
 - getLaunchToken: obtaine the laucher token generated
+- getLaunchURL: obtaine the launch url
 
 ### .env.example
 copy this file to .env and replace the params to make the project works.

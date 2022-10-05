@@ -3,15 +3,18 @@ const jwt = require('jsonwebtoken')
 class LauncherTokenGenerator {
     operatorCode
     currencyCode
+    langCode
     gameId
     userId
     powSeed
     operatorSeed
     launchToken
 
-    constructor(operatorCode, currencyCode, gameId, userId ,powSeed , operatorSeed) {
+    constructor (api, operatorCode, currencyCode, langCode, gameId, userId, powSeed, operatorSeed ) {
+        this.api = api
         this.operatorCode = operatorCode
         this.currencyCode = currencyCode
+        this.langCode = langCode
         this.gameId = gameId
         this.userId = userId
         this.powSeed = powSeed
@@ -28,6 +31,7 @@ class LauncherTokenGenerator {
         const secondLevelObject = {
             r: this.operatorCode,
             c: this.currencyCode,
+            l: this.langCode,
             n: firstLevelToken
         }
         const secondLevelToken = jwt.sign(secondLevelObject, this.powSeed);
@@ -35,7 +39,12 @@ class LauncherTokenGenerator {
     }
 
     getLaunchToken() {
+        this.encode()
         return this.launchToken
+    }
+
+    getLaunchUrl() {
+        return `${this.api}/launch/${this.getLaunchToken()}?call=0`
     }
 }
 

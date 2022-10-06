@@ -10,15 +10,15 @@ class LauncherTokenGenerator {
     operatorSeed
     launchToken
 
-    constructor (api, operatorCode, currencyCode, langCode, gameId, userId, powSeed, operatorSeed ) {
+    constructor (api, operatorCode, powSeed, operatorSeed, currencyCode, langCode, gameId, userId) {
         this.api = api
         this.operatorCode = operatorCode
+        this.powSeed = powSeed
+        this.operatorSeed = operatorSeed
         this.currencyCode = currencyCode
         this.langCode = langCode
         this.gameId = gameId
         this.userId = userId
-        this.powSeed = powSeed
-        this.operatorSeed = operatorSeed
     }
 
     encode() {

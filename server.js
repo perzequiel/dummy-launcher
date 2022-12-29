@@ -2,16 +2,12 @@ const express = require('express')
 const request = require('request');
 const requestPromise = require('util').promisify(request);
 
-const app = express()
-const port = 3000
-
 require('dotenv').config()
-const { POW_GAMING__GAME_LIST } = process.env
+const { PORT, POW_GAMING__GAME_LIST, POW_GAMING__OPERATOR_CODE, POW_GAMING__CURRENCY_CODE, POW_GAMING__LANG_CODE, POW_GAMING__OPERATOR_SEED, POW_GAMING__POW_SEED, POW_GAMING__PLATFORM_API } = process.env
+
+const app = express()
 
 const LauncherTokenGenerator = require('./lancher-token-generator.js')
-
-require('dotenv').config()
-const { POW_GAMING__OPERATOR_CODE, POW_GAMING__CURRENCY_CODE, POW_GAMING__LANG_CODE, POW_GAMING__OPERATOR_SEED, POW_GAMING__POW_SEED, POW_GAMING__PLATFORM_API } = process.env
 
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
@@ -61,6 +57,6 @@ app.get('/game-list.js', async (req, res) => {
 
 app.use(express.static('site'));
 
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
+app.listen(PORT, () => {
+  console.log(`Example app listening on port ${PORT}`)
 })

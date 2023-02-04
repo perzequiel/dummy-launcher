@@ -52,7 +52,7 @@ app.get('/game/:gameId', async (req, res) => {
 // storing game list
 app.get('/game-list.js', async (req, res) => {
   const { body } = await requestPromise(POW_GAMING__GAME_LIST)  
-  return res.end(`const gamesList = ${body}`);
+  return res.end(`const gamesList = ${body.games}`);
 })
 
 app.use(express.static('site'));

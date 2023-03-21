@@ -85,6 +85,7 @@ header{
     z-index: 30;
     width: 90%;
     transition: all .6s ease-in-out;
+    color: white;
 }
 .game-logo img{
     width: 100%;

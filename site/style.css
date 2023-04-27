@@ -37,7 +37,7 @@ header{
 .subtitle{
     display: inline-block;
     padding: 0 4vw;
-    margin-bottom: 15vw;
+    margin-bottom: 10vw;
 }
 .subtitle__text{
     font-size: 5rem;
@@ -65,10 +65,10 @@ header{
 .games-container{
     width: 90%;
     margin: 0 auto;
-    display: flex;
-    flex-flow: row nowrap;
     justify-content: space-between;
     margin-bottom: 5rem;
+    display: flex;
+    flex-flow: row wrap;
 }
 /* GAME-BOX */
 .game {
@@ -77,15 +77,19 @@ header{
     position: relative;
     display: flex;
     justify-content: center;
+    padding-bottom: 6rem;
 }
 /* GAME-LOGO */
 .game .game-logo{
     position: absolute;
-    top: -37%;
+    top: -9%;
     z-index: 30;
     width: 90%;
+    display: block;
+    text-align: center;
     transition: all .6s ease-in-out;
     color: white;
+    font-size: 3rem;
 }
 .game-logo img{
     width: 100%;
@@ -106,6 +110,7 @@ header{
 .game-bg > img{
     height: 100%;
     width: 100%;
+    border: solid #fe009a 10px;
 }
 /* GAME BUTTON PLAY */
 .btn{
@@ -142,17 +147,21 @@ header{
         margin-bottom: 1vw;
     }
     .subtitle{
-        margin-bottom: 20vw;
+        margin-bottom: 10vw;
     }
     .subtitle__text{
         font-size: 3.5rem;
     }
     .game{
-        margin-bottom: 20vw;
+        margin-bottom: 1vw;
     }
     .game .game-logo{
-        top: -32%;
+        top: -12%;
         width: 80%;
+        text-align: center;
+        width: 100%;
+        display: block;
+        font-size: 3rem;
     }
     .btn{
         font-size: 2.8vw;

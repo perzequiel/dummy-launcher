@@ -32,7 +32,9 @@ app.get('/game/:gameId', async (req, res) => {
       // game_id from the gameList
       gameId,
       // unique user identifier from the operators's database 
-      userId
+      userId,
+      // user session token (or serialized secret string) to connect to the operator wallet api
+      'API_USER_SESSION_TOKEN'
     )
 
     async function callService() {

@@ -6,11 +6,12 @@ class LauncherTokenGenerator {
     langCode
     gameId
     userId
+    apiSessionToken
     powSeed
     operatorSeed
     launchToken
 
-    constructor (api, operatorCode, powSeed, operatorSeed, currencyCode, langCode, gameId, userId) {
+    constructor (api, operatorCode, powSeed, operatorSeed, currencyCode, langCode, gameId, userId, apiSessionToken) {
         this.api = api
         this.operatorCode = operatorCode
         this.powSeed = powSeed
@@ -19,12 +20,14 @@ class LauncherTokenGenerator {
         this.langCode = langCode
         this.gameId = gameId
         this.userId = userId
+        this.apiSessionToken = apiSessionToken
     }
 
     encode() {
         const firstLevelObject = {
             m: this.gameId,
             e: this.userId,
+            k: this.apiSessionToken,
             t: (new Date()).toISOString(),
         }
         const firstLevelToken = jwt.sign(firstLevelObject, this.operatorSeed);

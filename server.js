@@ -37,18 +37,7 @@ app.get('/game/:gameId', async (req, res) => {
       'API_USER_SESSION_TOKEN'
     )
 
-    async function callService() {
-      const { body, statusCode } = await requestPromise(launcher.getLaunchUrl())
-      return statusCode != 200 ? 'error' : body
-    }
-    
-    for (let tries = 0; tries < 3; tries++) {
-      const response = await callService()
-      if (response != 'error') {
-        return res.redirect(response)
-      }
-    }
-    return res.end('Service unavailable');
+    return res.redirect(launcher.getLaunchUrl())
 })
 
 // storing game list

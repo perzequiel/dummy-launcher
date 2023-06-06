@@ -47,7 +47,7 @@ class LauncherTokenGenerator {
     }
 
     getLaunchUrl() {
-        return `${this.api}/launch/${this.getLaunchToken()}?call=0`
+        return `${this.api}/launch/${this.getLaunchToken()}?redirect=true`
     }
 }
 

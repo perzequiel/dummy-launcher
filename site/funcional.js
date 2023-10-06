@@ -1,4 +1,5 @@
 let username = '';
+let operatorcode = '';
 window.onload = function () {
     recoverUser();
     setGames()
@@ -7,6 +8,7 @@ window.onload = function () {
 const recoverUser = ()=>{
     if (document.cookie) {
         username = document.cookie.split(';')[0].split('=')[1];
+        operatorcode = document.cookie.split(';')[1].split('=')[1];
     } else {
         username = createUser();
     }
@@ -50,5 +52,5 @@ const createUser = ()=>{
 }
 
 const doAction = (id)=>{
-    window.location.href = `/game/${id}?username=${username}`
+    window.location.href = `/game/${id}?username=${username}?operatorcode=${operatorcode}`
 }

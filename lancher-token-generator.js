@@ -43,11 +43,12 @@ class LauncherTokenGenerator {
 
     getLaunchToken() {
         this.encode()
+        console.log(this.launchToken)
         return this.launchToken
     }
 
     getLaunchUrl() {
-        return `${this.api}/launch/${this.getLaunchToken()}?redirect=true`
+        return `${this.api}/launch/${this.getLaunchToken()}?redirect=false`
     }
 }
 

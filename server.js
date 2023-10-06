@@ -51,7 +51,7 @@ app.get('/game-list.js', async (req, res) => {
 
 app.use(cookieParser());
 
-app.use('/code/:operatorCode', (req, res, next) => {
+app.use('/launch/:operatorCode', (req, res, next) => {
   res.cookie('code',req.params.operatorCode, { maxAge: 900000, httpOnly: false });
   express.static('site')(req, res, next);
 });

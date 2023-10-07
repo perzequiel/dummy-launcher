@@ -57,6 +57,10 @@ app.use('/launcher/:operatorCode', (req, res, next) => {
   express.static('site')(req, res, next);
 });
 
+app.use('/', (req, res, next) => {
+  return res.redirect('/launcher/POW-OPERATOR')
+});
+
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`)
 })

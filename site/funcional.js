@@ -12,11 +12,11 @@ const recoverUser = ()=>{
             const field = cookie.split('=')
             const name = field[0]
             const data = field[1]
-            if (name == 'user') {
+            if (name.trim() == 'user') {
                 username = data
                 usernameExist = true
             }
-            if (name == 'code') operatorcode = data
+            if (name.trim() == 'code') operatorcode = data
         });
         if (!usernameExist) {
             document.cookie = createUser() + ';' + document.cookie
@@ -63,5 +63,5 @@ const createUser = ()=>{
 }
 
 const doAction = (id)=>{
-    window.location.href = `/game/${id}?username=${username}?operatorcode=${operatorcode}`
+    window.location.href = `/game/${id}?username=${username}&operatorcode=${operatorcode}`
 }

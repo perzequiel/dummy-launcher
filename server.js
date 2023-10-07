@@ -44,6 +44,7 @@ app.get('/launch/:gameId', async (req, res) => {
 
 // storing game list
 app.get('/game-list.js', async (req, res) => {
+  console.log(`${POW_GAMING__GAME_LIST}?${req.headers.cookie}`)
   const { body } = await requestPromise(`${POW_GAMING__GAME_LIST}?${req.headers.cookie}`)  
   return res.end(`const gamesList = ${JSON.stringify(JSON.parse(body).games)}`);
 })
@@ -51,7 +52,7 @@ app.get('/game-list.js', async (req, res) => {
 
 app.use(cookieParser());
 
-app.use('/launch/:operatorCode', (req, res, next) => {
+app.use('/launcher/:operatorCode', (req, res, next) => {
   res.cookie('code',req.params.operatorCode, { maxAge: 900000, httpOnly: false });
   express.static('site')(req, res, next);
 });

@@ -7,8 +7,20 @@ window.onload = function () {
 
 const recoverUser = ()=>{
     if (document.cookie) {
-        username = document.cookie.split(';')[0].split('=')[1];
-        operatorcode = document.cookie.split(';')[1].split('=')[1];
+        usernameExist = false
+        document.cookie.split(';').forEach(cookie => {
+            const field = cookie.split('=')
+            const name = field[0]
+            const data = field[1]
+            if (name == 'user') {
+                username = data
+                usernameExist = true
+            }
+            if (name == 'code') operatorcode = data
+        });
+        if (!usernameExist) {
+            document.cookie = createUser() + ';' + document.cookie
+        }
     } else {
         username = createUser();
     }
@@ -47,8 +59,7 @@ const createUser = ()=>{
     date.setTime(date.getTime() + (30 * 24 * 60 * 60 * 1000));
     expires = "; expires=" + date.toUTCString();
 
-    document.cookie = 'user=' + user + expires;
-    return user;
+    return 'user=' + user + expires;
 }
 
 const doAction = (id)=>{
